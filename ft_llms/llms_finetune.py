@@ -249,12 +249,17 @@ if __name__ == "__main__":
         gradient_checkpointing=args.gradient_checkpointing,
         weight_decay=args.weight_decay,
         adam_epsilon=1e-6,
-        report_to="wandb",
+        report_to="none",
+        logging_dir="./logs",
         load_best_model_at_end=False,
         save_total_limit=args.save_limit,
         bf16=True if torch.cuda.is_bf16_supported() else False,
         fp16=False if torch.cuda.is_bf16_supported() else True,
     )
+
+    logger.info(f"Train dataset size: {len(train_dataset)}")
+    logger.info(f"Eval dataset size: {len(valid_dataset)}")
+    logger.info(f"Output directory: {args.output_dir}")
 
     # get trainer
     trainer = SFTTrainer(
@@ -265,6 +270,9 @@ if __name__ == "__main__":
         dataset_text_field="text",
         tokenizer=tokenizer,
     )
+
+    logger.info("Starting training with config:")
+    logger.info(training_args)
 
     # train
     trainer.train()
