@@ -275,8 +275,8 @@ if __name__ == "__main__":
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=valid_dataset,
-        tokenizer=tokenizer,
     )
+    trainer.tokenizer = tokenizer
 
     logger.info("Starting training with config:")
     logger.info(training_args)
