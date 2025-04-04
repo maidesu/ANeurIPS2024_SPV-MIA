@@ -103,11 +103,14 @@ if __name__ == "__main__":
         replace_attn_with_flash_attn()
         use_flash_attention = True
 
+    logger.info("dog")
 
     if "WANDB_PROJECT" not in os.environ:
         os.environ["WANDB_DISABLED"] = "true"
         os.environ["WANDB_SILENT"] = "true"
         logger.info("Wandb disabled by default.")
+
+    logger.info("dog2")
 
     if args.split_model:
         logger.info("Splitting the model across all available devices...")
@@ -115,18 +118,21 @@ if __name__ == "__main__":
     else:
         kwargs = {"device_map": None}
 
+    logger.info("dog3")
+
     if model_type == "llama":
+        logger.info("dog4")
         tokenizer = LlamaTokenizer.from_pretrained(args.model_name, token=access_token,
                                                   trust_remote_code=args.trust_remote_code, cache_dir=args.cache_path,
                                                   add_eos_token=args.add_eos_token, add_bos_token=args.add_bos_token,
                                                   use_fast=True)
     else:
-        logger.info(f"Hello")
+        logger.info("Hello")
         tokenizer = AutoTokenizer.from_pretrained(args.model_name, token=access_token,
                                                   trust_remote_code=args.trust_remote_code, cache_dir=args.cache_path,
                                                   add_eos_token=args.add_eos_token, add_bos_token=args.add_bos_token,
                                                   use_fast=True)
-        logger.info(f"Hi again")
+        logger.info("Hi again")
     # THIS IS A HACK TO GET THE PAD TOKEN ID NOT TO BE EOS
     # good one for LLama is 18610
     if args.pad_token_id is not None:
