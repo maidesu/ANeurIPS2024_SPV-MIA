@@ -19,11 +19,11 @@ from attack.utils import create_folder
 from transformers import LlamaTokenizer, get_scheduler
 import os
 
-from utils import get_logger, constantlengthdatasetiter, print_trainable_parameters
+from utils import constantlengthdatasetiter, print_trainable_parameters
 # trl.trainer.ConstantLengthDataset.__dict__["__iter__"] = constantlengthdatasetiter
 # setattr(trl.trainer.ConstantLengthDataset, "__iter__", constantlengthdatasetiter)
 
-logger = get_logger("finetune", "info")
+logger = logging.getLogger("finetune", "info")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
