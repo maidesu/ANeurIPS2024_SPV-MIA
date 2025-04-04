@@ -121,10 +121,12 @@ if __name__ == "__main__":
                                                   add_eos_token=args.add_eos_token, add_bos_token=args.add_bos_token,
                                                   use_fast=True)
     else:
+        logger.info(f"Hello")
         tokenizer = AutoTokenizer.from_pretrained(args.model_name, token=access_token,
                                                   trust_remote_code=args.trust_remote_code, cache_dir=args.cache_path,
                                                   add_eos_token=args.add_eos_token, add_bos_token=args.add_bos_token,
                                                   use_fast=True)
+        logger.info(f"Hi again")
     # THIS IS A HACK TO GET THE PAD TOKEN ID NOT TO BE EOS
     # good one for LLama is 18610
     if args.pad_token_id is not None:
