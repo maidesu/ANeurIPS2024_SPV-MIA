@@ -23,7 +23,7 @@ from utils import constantlengthdatasetiter, print_trainable_parameters
 # trl.trainer.ConstantLengthDataset.__dict__["__iter__"] = constantlengthdatasetiter
 # setattr(trl.trainer.ConstantLengthDataset, "__iter__", constantlengthdatasetiter)
 
-logger = logging.getLogger("finetune", "info")
+logger = logging.getLogger("finetune")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
