@@ -275,7 +275,6 @@ if __name__ == "__main__":
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=valid_dataset,
-        dataset_text_field="text",
         tokenizer=tokenizer,
     )
 
